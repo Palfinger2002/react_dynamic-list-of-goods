@@ -3,9 +3,10 @@ import './App.scss';
 import { GoodsList } from './GoodsList';
 
 import * as goodsAPI from './api/goods';
+import { Good } from './types/Good';
 
-export const App: React.FC = () => {
-  const [goods, setGoods] = useState([]);
+const AppComponent: React.FC = () => {
+  const [goods, setGoods] = useState<Good[]>([]);
 
   const handleLoadAllGoods = () => {
     goodsAPI.getAll().then(allGoods => setGoods(allGoods));
@@ -43,3 +44,5 @@ export const App: React.FC = () => {
     </div>
   );
 };
+
+export const App = React.memo(AppComponent);
